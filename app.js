@@ -42,12 +42,16 @@ app.use(
 
 //Rutas
 /* app.get('/', function (req, res) {
-  res.send('Hello World !');
+  res.send('La ruta es / es la raiz');
 });
  */
 
 //Configuracion global de rutas
-app.use('/api', require('./routes/nota'))
+app.use('/api', require('./routes/nota'), function (req, res) {
+  // Si entra localhost:3000/api se muestra el siguiente mensaje
+  res.send('La ruta es /api');
+  //Si entra localhost:3000/api/nota se muestra los resultados
+})
 
 //Middleware para vuejs router modo history
 const history = require('connect-history-api-fallback');
