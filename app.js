@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
 
+//Prueba de cc
 //const express = require('express');
 //const morgan = require('morgan');
 //const cors = require('cors');
@@ -15,18 +16,18 @@ const app = express();
 const mongoose = require('mongoose');
 const uri = 'mongodb://localhost:27017/myapp';
 const options = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
 };
 // Or using promises
 mongoose.connect(uri, options).then(
-  () => {
-    console.log('Conectado a Mongo DB');
-  },
-  err => {
-    err;
-  }
+    () => {
+        console.log('Conectado a Mongo DB');
+    },
+    err => {
+        err;
+    }
 );
 
 //Middleware
@@ -35,9 +36,9 @@ app.use(cors());
 app.use(express.json());
 //application/x-www-form-urlencoded
 app.use(
-  express.urlencoded({
-    extended: true
-  })
+    express.urlencoded({
+        extended: true
+    })
 );
 
 //Rutas
@@ -47,10 +48,10 @@ app.use(
  */
 
 //Configuracion global de rutas
-app.use('/api', require('./routes/nota'), function (req, res) {
-  // Si entra localhost:3000/api se muestra el siguiente mensaje
-  res.send('La ruta es /api');
-  //Si entra localhost:3000/api/nota se muestra los resultados
+app.use('/api', require('./routes/nota'), function(req, res) {
+    // Si entra localhost:3000/api se muestra el siguiente mensaje
+    res.send('La ruta es /api');
+    //Si entra localhost:3000/api/nota se muestra los resultados
 })
 
 //Middleware para vuejs router modo history
@@ -59,6 +60,6 @@ app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('puerto', process.env.PORT || 3000);
-app.listen(app.get('puerto'), function () {
-  console.log('Escuchando el puerto: ', app.get('puerto'));
+app.listen(app.get('puerto'), function() {
+    console.log('Escuchando el puerto: ', app.get('puerto'));
 });
