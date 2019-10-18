@@ -1,6 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
+
 //Importar el modelo nota
 import Nota from '../models/nota';
 import Prueba from '../models/prueba'
@@ -103,10 +104,13 @@ router.delete('/nota/:id', async (req, res) => {
 
 router.put('/nota/:id', async (req, res) => {
   const _id = req.params.id;
+  const body = req.body;
   try {
-    const notaDb = await Nota.findByIdAndUpdate(_id, body, {
-      new: true // new: true es para que postman puede mostrar los datos de actualizacion de una vez
-    });
+    const notaDb = await Nota.findByIdAndUpdate(
+      _id,
+      body, {
+        new: true // new: true es para que postman puede mostrar los datos de actualizacion de una vez
+      });
     res.json(notaDb);
   } catch (error) {
     return res.status(400).json({

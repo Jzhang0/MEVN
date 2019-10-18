@@ -41,6 +41,13 @@ app.use(
     })
 );
 
+/* reglas de cors */
+/* app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+}); */
+
 //Rutas
 /* app.get('/', function (req, res) {
   res.send('La ruta es / es la raiz');
@@ -48,7 +55,7 @@ app.use(
  */
 
 //Configuracion global de rutas
-app.use('/api', require('./routes/nota'), function(req, res) {
+app.use('/api', require('./routes/nota'), function (req, res) {
     // Si entra localhost:3000/api se muestra el siguiente mensaje
     res.send('La ruta es /api');
     //Si entra localhost:3000/api/nota se muestra los resultados
@@ -60,6 +67,6 @@ app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('puerto', process.env.PORT || 3000);
-app.listen(app.get('puerto'), function() {
+app.listen(app.get('puerto'), function () {
     console.log('Escuchando el puerto: ', app.get('puerto'));
 });
